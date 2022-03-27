@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RaceController : MonoBehaviour
@@ -75,6 +76,10 @@ public class RaceController : MonoBehaviour
     private void HideStartText()
     {
         startText.gameObject.SetActive(false);
+    }
 
+    public void RestartRace()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
