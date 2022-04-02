@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CarApperance : MonoBehaviour
+public class CarAppearance : MonoBehaviour
 {
+    public int playerNumber;
+
     public string playerName;
     public Color carColor;
     public Text nameText;

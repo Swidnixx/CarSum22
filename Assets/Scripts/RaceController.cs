@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class RaceController : MonoBehaviour
 {
+    public GameObject carPrefab;
+    public Transform[] spawnPos;
+    public int playerCount;
+
     public static bool racePending = false;
     public static int totalLaps = 1;
     public int timer = 3;
@@ -24,6 +28,19 @@ public class RaceController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         InvokeRepeating(nameof(CountDown), 3, 1);
+
+        for(int i=0; i<playerCount; i++)
+        {
+            GameObject car = Instantiate(carPrefab);
+            car.transform.position = spawnPos[i].position;
+            car.transform.rotation = spawnPos[i].rotation;
+            car.GetComponent<CarAppearance>().playerNumber = i;
+            if(i==0)
+            {
+                car.GetComponent<PlayerController>().enabled = true;
+                GameObject.FindObjectOfType<CameraController>().SetCameraProperties(car);
+            }
+        }
 
         GameObject[] cars = GameObject.FindGameObjectsWithTag("Car");
         carControllers = new CheckpointController[cars.Length];
