@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
             drivingScript.rb.velocity = Vector3.zero;
             drivingScript.rb.transform.position = checkpointController.lastCheckpoint.transform.position; // zwróciæ uwagê na rozmieszczenie checkpointów
             drivingScript.rb.transform.rotation = checkpointController.lastCheckpoint.transform.rotation;
+            lastTimeMoving = Time.time;
         }
 
         if (!RaceController.racePending)

@@ -14,6 +14,21 @@ public class CarAppearance : MonoBehaviour
 
     void Start()
     {
+        if(playerNumber == 0)
+        {
+            playerName = PlayerPrefs.GetString("PlayerName");
+            float r, g, b;
+            r = PlayerPrefs.GetFloat("Red");
+            g = PlayerPrefs.GetFloat("Green");
+            b = PlayerPrefs.GetFloat("Blue");
+            carColor = new Color(r, g, b);
+        }
+        else
+        {
+            playerName = "Player" + playerNumber;
+            carColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        }
+
         nameText.text = playerName;
         carRednerer.material.color = carColor;
         nameText.color = carColor;
