@@ -520,10 +520,10 @@ RectTransform:
   m_Father: {fileID: 62354085}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 60}
-  m_SizeDelta: {x: 1920, y: 120}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 382.7461, y: -540}
+  m_SizeDelta: {x: 717.8311, y: 1036.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230159539
 MonoBehaviour:
@@ -547,7 +547,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1317,7 +1317,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1609891084}
         m_TargetAssemblyTypeName: RaceLauncher, Assembly-CSharp
-        m_MethodName: LaunchRace
+        m_MethodName: EstablishConnection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2279,6 +2279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 1698078629}
+  networkText: {fileID: 230159539}
 --- !u!1 &1624730961
 GameObject:
   m_ObjectHideFlags: 0
