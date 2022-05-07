@@ -50,9 +50,32 @@ public class RaceController : MonoBehaviourPunCallbacks
 
         if(PhotonNetwork.IsConnected)
         {
-            throw new NotImplementedException();
-            //do dokoñczenia
+            startPos = spawnPos[PhotonNetwork.CurrentRoom.PlayerCount - 1].position;
+            startRot = spawnPos[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation;
+
+
+            object[] instanceData = new object[4];
+            instanceData[0] = PlayerPrefs.GetString("PlayerName");
+            instanceData[1] = PlayerPrefs.GetFloat("Red");
+            instanceData[2] = PlayerPrefs.GetFloat("Green");
+            instanceData[3] = PlayerPrefs.GetFloat("Blue");
+
+            if(OnlinePlayer.LocalPlayerInstance == null)
+            {
+                playerCar = PhotonNetwork.Instantiate(carPrefab.name, startPos, startRot, 0, instanceData);
+                playerCar.GetComponent<CarAppearance>().SetLocalPlayer();
+            }
+
+            if(PhotonNetwork.IsMasterClient)
+            {
+                startRaceButton.SetActive(true);
+            }else
+            {
+                waitForOthersText.SetActive(true);
+            }
         }
+
+        playerCar.GetComponent<PlayerController>().enabled = true;
     }
 
     void LateUpdate()
@@ -109,8 +132,10 @@ public class RaceController : MonoBehaviourPunCallbacks
 
     #region Photon Controlling Methods
     [PunRPC]
-    public void StartRace()
+    private void StartRace()
     {
+        startText.gameObject.SetActive(true);
+
         InvokeRepeating(nameof(CountDown), 3, 1);
         startRaceButton.SetActive(false);
         waitForOthersText.SetActive(false);
