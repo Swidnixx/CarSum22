@@ -91,6 +91,8 @@ MonoBehaviour:
   carColor: {r: 0.69803923, g: 0.74509805, b: 0.5882353, a: 1}
   nameText: {fileID: 5162625055780534577}
   carRednerer: {fileID: 5162625056494813403}
+  backCamera: {fileID: 5162625055240316327}
+  checkpointController: {fileID: 5162625055953108421}
 --- !u!114 &6200430078356061047
 MonoBehaviour:
   m_ObjectHideFlags: 0

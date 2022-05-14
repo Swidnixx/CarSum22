@@ -12,30 +12,26 @@ public class CarAppearance : MonoBehaviour
     public Text nameText;
     public Renderer carRednerer;
 
-    //void Start()
-    //{
-    //    if(playerNumber == 0)
-    //    {
-    //        playerName = PlayerPrefs.GetString("PlayerName");
-    //        float r, g, b;
-    //        r = PlayerPrefs.GetFloat("Red");
-    //        g = PlayerPrefs.GetFloat("Green");
-    //        b = PlayerPrefs.GetFloat("Blue");
-    //        carColor = new Color(r, g, b);
-    //    }
-    //    else
-    //    {
-    //        playerName = "Player" + playerNumber;
-    //        carColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-    //    }
+    public Camera backCamera;
 
-    //    nameText.text = playerName;
-    //    carRednerer.material.color = carColor;
-    //    nameText.color = carColor;
-    //}
+    int carID;
+    bool idSet = false;
+    public CheckpointController checkpointController;
+
+    private void LateUpdate()
+    {
+        if(!idSet)
+        {
+            carID = LeaderboardLogic.Register(playerName);
+            idSet = true;
+            return;
+        }
+        LeaderboardLogic.SetPosition(carID, checkpointController.lap, checkpointController.checkpoint);
+    }
 
     public void SetNameAndColor(string name, Color color)
     {
+        playerName = name;
         nameText.text = name;
         carRednerer.material.color = color;
         nameText.color = color;
@@ -54,6 +50,7 @@ public class CarAppearance : MonoBehaviour
         SetNameAndColor(playerName, carColor);
 
         RenderTexture rt = new RenderTexture(1024, 1024, 0);
-        // Tutaj nale¿y uzpe³niæ render texturê lusterka
+        backCamera.targetTexture = rt;
+        FindObjectOfType<RaceController>().SetMirror(backCamera);
     }
 }

@@ -9,6 +9,8 @@ using Photon.Realtime;
 
 public class RaceController : MonoBehaviourPunCallbacks
 {
+    public RawImage mirror;
+
     public GameObject startRaceButton;
     public GameObject waitForOthersText;
 
@@ -28,6 +30,11 @@ public class RaceController : MonoBehaviourPunCallbacks
     public AudioClip startSound;
 
     public GameObject endPanel;
+
+    public void SetMirror(Camera backCamera)
+    {
+        mirror.texture = backCamera.targetTexture;
+    }
 
     #region Unity Callbacks
     void Start()
