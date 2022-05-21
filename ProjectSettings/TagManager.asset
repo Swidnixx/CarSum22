@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoint
   - Car
+  - FuelText
   layers:
   - Default
   - TransparentFX

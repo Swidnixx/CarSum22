@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrivingScript : MonoBehaviour
 {
@@ -13,6 +14,43 @@ public class DrivingScript : MonoBehaviour
     public float currentSpeed;
 
     public GameObject stopLights;
+
+    public float nitroFuel = 3;
+    public GameObject nitroLights;
+
+    Text nitroText;
+
+    private void Start()
+    {
+        nitroText = GameObject.FindGameObjectWithTag("FuelText").GetComponent<Text>();
+        SetFuelText();
+    }
+
+    public void SetFuelText()
+    {
+        nitroText.text = nitroFuel.ToString();
+    }
+
+    void NitroBoost(float power)
+    {
+        rb.AddForce(rb.gameObject.transform.forward * power);
+    }
+
+    public void Nitro(bool on)
+    {
+        if(on && nitroFuel > 0)
+        {
+            NitroBoost(1000000);
+            nitroFuel -= 1;
+            SetFuelText();
+            nitroLights.SetActive(true);
+            Debug.Log(nitroFuel + " nitros left");
+        }
+        else
+        {
+            nitroLights.SetActive(false);
+        }
+    }
 
     public void Drive(float accel, float brake, float steer)
     {

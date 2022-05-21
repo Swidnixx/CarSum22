@@ -83,6 +83,7 @@ public class RaceController : MonoBehaviourPunCallbacks
         }
 
         playerCar.GetComponent<PlayerController>().enabled = true;
+        playerCar.GetComponent<DrivingScript>().enabled = true;
     }
 
     void LateUpdate()
