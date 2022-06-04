@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class DriveSupportScript : MonoBehaviour
 {
+    public Transform centerOfMass;
+
     Rigidbody rb;
     float lastTimeChecked;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = centerOfMass.localPosition;
     }
 
     void Update()

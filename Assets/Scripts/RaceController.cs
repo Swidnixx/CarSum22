@@ -19,7 +19,7 @@ public class RaceController : MonoBehaviourPunCallbacks
     public int playerCount;
 
     public static bool racePending = false;
-    public static int totalLaps = 1;
+    public static int totalLaps = 3;
     public int timer = 3;
 
     public CheckpointController[] carControllers;

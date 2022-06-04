@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
             drivingScript.rb.transform.position = checkpointController.lastCheckpoint.transform.position; // zwróciæ uwagê na rozmieszczenie checkpointów
             drivingScript.rb.transform.rotation = checkpointController.lastCheckpoint.transform.rotation;
             lastTimeMoving = Time.time;
+
+            drivingScript.rb.gameObject.layer = 6;
+            Invoke(nameof(ResetLayer), 3);
         }
 
         if (!RaceController.racePending)
@@ -46,5 +49,8 @@ public class PlayerController : MonoBehaviour
 
         drivingScript.Drive(accel, brake, steer);
     }
-
+    void ResetLayer()
+    {
+        drivingScript.rb.gameObject.layer = 0;
+    }
 }
